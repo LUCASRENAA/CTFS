@@ -91,7 +91,7 @@ Vamos olhar o CSS também
 ```
 
 
-#### HTML code
+#### CSS code
 ```html
 div.container {
     width: 100%;
@@ -161,6 +161,7 @@ Vamos para o javascript
 ```html
 <script type="application/javascript" src="myjs.js"></script>
 ```
+#### JS code
 
 ```html
 function openTab(tabName,elmnt,color) {
@@ -190,6 +191,8 @@ Aqui não encontramos nada no javascript da flag, mas encontramos uma dica: Como
 
 E esse arquivo é nada mais menos que o robots.txt
 
+
+#### Robots.txt code
 
 ```html
 User-agent: *
@@ -229,6 +232,7 @@ com essa pesquisa achei esse link
 link: http://mercury.picoctf.net:5080/.DS_Store
 
 
+#### .DB_Store code
 
 ```html
 Congrats! You completed the scavenger hunt. Part 5: _35844447}
