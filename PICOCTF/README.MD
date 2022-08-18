@@ -7,5 +7,6 @@ Espero que vocês gostem!
 
 # CTFS
 - [x] Cookies
+- [x] Scavenger Hunt
 
 
