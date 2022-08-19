@@ -1,15 +1,12 @@
-# picoCTF
+# TryHackMe
 
-Pessoal, esse repositorio tem como objetivo fazer "write-ups" do picoCTF
+Pessoal, esse repositorio tem como objetivo fazer "write-ups" do TryHackMe
 
 Espero que vocês gostem! 
 
 
 # CTFS
-- [x] Cookies
-- [x] Scavenger Hunt
-- [x] Insp3ct0r
-
-
+- [x] Pickle Rick
+- [x] Agent Sudo
 
 
