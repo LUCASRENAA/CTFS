@@ -111,11 +111,11 @@ Encontramos uma página chamada login.php e um robots.txt
 
 Entrando aqui na tela de login, deixei um bruteforce rodando  em paraleo
 
-Tela de login
+## Tela de login
 ![vuln2.jpg](img/login.png)
 
 
-Hydra
+## Hydra
 ![vuln2.jpg](img/hydra.jpeg)
 ```
 hydra -l R1ckRul3s -P /usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt   10.10.195.34 http-post-form "/login.php:username=^USER^&password=^PASS^&sub=Login:Invalid username or password."
@@ -181,6 +181,7 @@ E agora, só rodar o exploit e escalar privilegio
 
 
 ![vuln2.jpg](img/root.png)
+
 Com acesso root e procurando o terceiro ingrediente achamos na pasta do root
 
 ![vuln2.jpg](img/terceiro.png)
@@ -189,4 +190,4 @@ Com acesso root e procurando o terceiro ingrediente achamos na pasta do root
 fleeb juice
 ```
 
-Máquina completa :
+Máquina completa :D

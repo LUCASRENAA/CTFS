@@ -7,6 +7,6 @@ Espero que vocês gostem!
 
 # CTFS
 - [x] picoCTF
-- [ ] TryHackMe
+- [x] TryHackMe
 
 
