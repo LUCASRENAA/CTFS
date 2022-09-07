@@ -158,7 +158,7 @@ Separando a flag para ficar de mais fácil visualização.
 /* You need CSS to make pretty pages. Here's part 2/3 of the flag: t3ct1ve_0r_ju5t */
 ```
 
-Agora a flag é : picoCTF{t + t3ct1ve_0r_ju5t
+Agora a flag é : picoCTF{tru3_d3 + t3ct1ve_0r_ju5t
 
 Vamos para o javascript
 
@@ -189,62 +189,17 @@ window.onload = function() {
     openTab('tabintro', this, '#222');
 }
 
-/* How can I keep Google from indexing my website? */
+/* Javascript sure is neat. Anyways part 3/3 of the flag: _lucky?f10be399} */
 ```
 
-Aqui não encontramos nada no javascript da flag, mas encontramos uma dica: Como posso impedir que o Google indexe meu site?
-
-E esse arquivo é nada mais menos que o robots.txt
-
-
-#### Robots.txt code
+Separando a ultima flag
 
 ```html
-User-agent: *
-Disallow: /index.html
-# Part 3: t_0f_pl4c
-# I think this is an apache server... can you Access the next flag?
+/* Javascript sure is neat. Anyways part 3/3 of the flag: _lucky?f10be399} */
 ```
+e encontramos a ultima flag que é a : _lucky?f10be399}
 
 
-Agora a flag é : picoCTF{t + h4ts_4_l0 + t_0f_pl4c
-
-A dica é sobre um arquivo do apache, tentando alguns arquivos consegui com o .htaccess
-
-http://mercury.picoctf.net:5080/.htaccess
-
-```html
-# Part 4: 3s_2_lO0k
-# I love making websites on my Mac, I can Store a lot of information there.
-```
-
-Agora a flag é : picoCTF{t + h4ts_4_l0 + t_0f_pl4c + 3s_2_lO0k
-
-
-
-Depois de pesquisar um pouco no google sobre arquivos ocultos no google
-"file hidden mac directory commons filessystem"
-
-com essa pesquisa achei esse link
-
-# Pesquisa no google
-![vuln2.jpg](img/pesquisagoogle.jpeg)
-
-# Stackoverflow
-![vuln2.jpg](img/arquivooculto.jpeg)
-
-
-link: http://mercury.picoctf.net:5080/.DS_Store
-
-
-#### .DB_Store code
-
-```html
-Congrats! You completed the scavenger hunt. Part 5: _35844447}
-```
-
-
-Agora a flag é : picoCTF{t + h4ts_4_l0 + t_0f_pl4c + 3s_2_lO0k + _35844447} 
-
+Somando as flag encontramos a resposta: picoCTF{tru3_d3 + t3ct1ve_0r_ju5t +  _lucky?f10be399}
 E está completa! 
 Laborátorio finaliazado!

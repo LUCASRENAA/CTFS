@@ -8,5 +8,5 @@ Espero que vocês gostem!
 # CTFS
 - [x] Pickle Rick
 - [x] Agent Sudo
-
-
+- [x] StartUp
+- [x] Source
